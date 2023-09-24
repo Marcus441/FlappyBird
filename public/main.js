@@ -31,15 +31,15 @@ let bottomImg;
 // create pipes - end
 // physics - start
 
-let jumpVelocity = -6;
-let velocityX = -2;
-let velocityY = 0;
-let gravity = 0.5;
-
-// let jumpVelocity = -4;
-// let velocityX = -0.75;
+// let jumpVelocity = -6;
+// let velocityX = -2;
 // let velocityY = 0;
-// let gravity = 0.1;
+// let gravity = 0.5;
+
+let jumpVelocity = -4;
+let velocityX = -0.75;
+let velocityY = 0;
+let gravity = 0.1;
 
 // physics - end
 // states - start
@@ -57,17 +57,17 @@ window.onload = function () {
 
     // draw bird
     player = new Image();
-    player.src = "images/flappybird.png";
+    player.src = "/Images/flappybird.png";
     player.onload = function () {
 
         ctx.drawImage(player, bird.x, bird.y, bird.width, bird.height);
     }
 
     topImg = new Image();
-    topImg.src = "images/toppipe.png";
+    topImg.src = "/Images/toppipe.png";
 
     bottomImg = new Image();
-    bottomImg.src = "images/bottompipe.png";
+    bottomImg.src = "/Images/bottompipe.png";
 
     requestAnimationFrame(update);
     setInterval(placePipes, 1500);
