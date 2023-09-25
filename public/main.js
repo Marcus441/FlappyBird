@@ -48,10 +48,10 @@ let score = 0;
 const socket = new WebSocket("ws://192.168.20.12:3000/");
 
 // ws - end
-socket.addEventListener('open', function (event){
+socket.addEventListener('open', function (event) {
     console.log("connected to server")
 })
-socket.addEventListener('message', function (event){
+socket.addEventListener('message', function (event) {
     console.log(event.data)
 })
 
@@ -95,9 +95,9 @@ function update() {
 
     const msNow = window.performance.now()
     const msPassed = msNow - msPrev
-  
+
     if (msPassed < msPerFrame) return
-  
+
     msPrev = msNow;
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -175,7 +175,7 @@ function placePipes() {
 function moveBird() {
     gameover = false;
     velocityY = jumpVelocity;
-    
+
 }
 
 function detectCollisions(img1, img2) {
