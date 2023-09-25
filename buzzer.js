@@ -5,7 +5,7 @@ const outPin = 17;
 
 const output = new Gpio(outPin, {mode: Gpio.OUTPUT});
 
-export function playTone(buzz){
+function playTone(buzz){
   output.digitalWrite(0);
   pigpio.waveClear();
   
@@ -32,4 +32,4 @@ export function playTone(buzz){
   pigpio.waveDelete(waveId);
 }
 
-playTone(500);
+module.exports.playTone = playTone;
