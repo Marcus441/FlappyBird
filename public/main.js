@@ -1,6 +1,5 @@
-import { playTone } from "./buzzer";
 // create canvas
-
+let ctx;
 let canvas;
 let canvasWidth = 360;
 let canvasHeight = 640;
@@ -49,8 +48,21 @@ let gameover = false;
 let score = 0;
 
 // states - end
+// ws - start
+
+const socket = new WebSocket("ws://192.168.20.12:3000/");
+
+// ws - end
+socket.addEventListener('open', function (event){
+    console.log("connected to server")
+})
+socket.addEventListener('message', function (event){
+    console.log(event.data)
+})
+
 
 window.onload = function () {
+
     canvas = document.getElementById("canvas");
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
@@ -99,13 +111,12 @@ function update() {
         ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
         if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
+            socket.send("pass")
             pipe.passed = true;
-            playTone(1000)
             score++;
         }
 
         if (detectCollisions(bird, pipe)) {
-            
             gameover = true;
         }
     }
@@ -115,7 +126,7 @@ function update() {
     ctx.fillText(score / 2, 5, 45);
 
     if (gameover) {
-        playTone(2000)
+        socket.send("gameover");
         ctx.fillText("Game Over", 5, 90);
         bird.y = birdY;
         pipes = [];
