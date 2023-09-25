@@ -1,3 +1,4 @@
+import { playTone } from "./buzzer";
 // create canvas
 
 let canvas;
@@ -99,10 +100,12 @@ function update() {
 
         if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
             pipe.passed = true;
+            playTone(1000)
             score++;
         }
 
         if (detectCollisions(bird, pipe)) {
+            
             gameover = true;
         }
     }
@@ -112,6 +115,7 @@ function update() {
     ctx.fillText(score / 2, 5, 45);
 
     if (gameover) {
+        playTone(2000)
         ctx.fillText("Game Over", 5, 90);
         bird.y = birdY;
         pipes = [];
