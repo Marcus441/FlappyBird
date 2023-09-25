@@ -31,15 +31,10 @@ let bottomImg;
 // create pipes - end
 // physics - start
 
-// let jumpVelocity = -6;
-// let velocityX = -2;
-// let velocityY = 0;
-// let gravity = 0.5;
-
-let jumpVelocity = -4;
-let velocityX = -0.75;
+let jumpVelocity = -8;
+let velocityX = -2;
 let velocityY = 0;
-let gravity = 0.1;
+let gravity = 0.5;
 
 // physics - end
 // states - start
@@ -88,11 +83,22 @@ window.onload = function () {
 
 }
 
+let msPrev = window.performance.now()
+const fps = 60
+const msPerFrame = 1000 / fps
+
 function update() {
     requestAnimationFrame(update);
     if (gameover) {
         return;
     }
+
+    const msNow = window.performance.now()
+    const msPassed = msNow - msPrev
+  
+    if (msPassed < msPerFrame) return
+  
+    msPrev = msNow;
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
