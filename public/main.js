@@ -31,7 +31,7 @@ let bottomImg;
 // create pipes - end
 // physics - start
 
-let jumpVelocity = -8;
+let jumpVelocity = -6;
 let velocityX = -2;
 let velocityY = 0;
 let gravity = 0.5;
@@ -167,7 +167,7 @@ function placePipes() {
     }
     pipes.push(bottompipe);
 
-    if (pipes.length > 6) {
+    if (pipes.length > 8) {
         pipes.shift();
     }
 }
