@@ -116,20 +116,22 @@ function update() {
         pipe.x += velocityX;
         ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
-        if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
-            socket.send("pass") // sends message to server
-            pipe.passed = true;
-            score++;
-        }
-
         if (detectCollisions(bird, pipe)) {
             gameover = true;
+        }
+
+
+        if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
+            i%2 ? socket.send("pass"):false; // sends message to server
+            i%2 ? score++:false; // sends message to server
+            pipe.passed = true;
+            
         }
     }
 
     ctx.fillStyle = "white";
     ctx.font = "45px Verdana";
-    ctx.fillText(score / 2, 5, 45);
+    ctx.fillText(score, 5, 45);
 
     if (gameover) {
         socket.send("gameover"); // sends message to server
