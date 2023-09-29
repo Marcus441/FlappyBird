@@ -117,7 +117,7 @@ function update() {
         ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
         if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
-            socket.send("pass")
+            socket.send("pass") // sends message to server
             pipe.passed = true;
             score++;
         }
@@ -132,7 +132,7 @@ function update() {
     ctx.fillText(score / 2, 5, 45);
 
     if (gameover) {
-        socket.send("gameover");
+        socket.send("gameover"); // sends message to server
         ctx.fillText("Game Over", 5, 90);
         bird.y = birdY;
         pipes = [];
