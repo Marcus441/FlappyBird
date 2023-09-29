@@ -1,4 +1,3 @@
-// import { playTone } from ;
 const buzzer = require('./buzzer.js');
 const express = require('express'); // import express
 const app = express(); // initialize express
