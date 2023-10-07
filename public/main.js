@@ -45,7 +45,8 @@ let score = 0;
 // states - end
 // ws - start
 
-const socket = new WebSocket("ws://192.168.20.12:3000/");
+//const socket = new WebSocket("ws://192.168.20.12:3000/");
+const socket = new WebSocket("ws://10.88.42.203:3000/");
 
 // ws - end
 socket.addEventListener('open', function (event) {
@@ -122,8 +123,8 @@ function update() {
 
 
         if (((pipe.x + pipe.width) <= bird.x) && !pipe.passed) {
-            i%2 ? socket.send("pass"):false; // sends message to server
-            i%2 ? score++:false; // sends message to server
+            i%2 ? socket.send("pass"):false;                    // sends message to server
+            i%2 ? score++:false;                                // sends message to server
             pipe.passed = true;
             
         }
@@ -134,7 +135,7 @@ function update() {
     ctx.fillText(score, 5, 45);
 
     if (gameover) {
-        socket.send("gameover"); // sends message to server
+        socket.send("gameover");                                 // sends message to server
         ctx.fillText("Game Over", 5, 90);
         bird.y = birdY;
         pipes = [];
